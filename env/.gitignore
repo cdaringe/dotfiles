@@ -1,0 +1,9 @@
+/Users/cdieringer/*
+!/.bash_profile
+!/.gitignore
+!/.vimrc
+!/.bashrc
+!/.zshrc
+!/.aliases.sh
+!/.dbfuncs.sh
+!/.env.sh
