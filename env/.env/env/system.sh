@@ -33,6 +33,7 @@ esac
 
 function install_the_world_apt () {
   sudo apt-get install \
+    jq \
     bat \
     curl \
     silversearcher-ag \
