@@ -30,3 +30,14 @@ i*86)
   BITS=?
   ;;
 esac
+
+function install_the_world_apt () {
+  sudo apt-get install \
+    bat \
+    curl \
+    silversearcher-ag \
+    stow \
+    git \
+    vim \
+    tmux
+}

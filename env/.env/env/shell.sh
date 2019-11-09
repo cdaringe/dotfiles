@@ -44,33 +44,21 @@ if [ -x /usr/bin/dircolors ]; then
   alias grep='grep --color=auto'
 fi
 
+IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi;)
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-touch ~/.npmrc
-if grep -Fq "npm-e" ~/.npmrc
-then
-    ICON="🚨 🌎"
-elif grep -Fq "npm-t" ~/.npmrc
-then
-    ICON="🚨 🎌️"
-elif grep -Fq "npm-l" ~/.npmrc
-then
-    ICON="🚨 ☠️"
-else
-    ICON=🛰
-fi
-export PS1="\W \\$ \[$(tput sgr0)\]"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
+export PS1="\W \\$ \[$(tput sgr0)\]"
+if [ $IS_LINUX ]; then
+  PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
 
 LANG="en_US.UTF-8"
 export LANG
-
-IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi;)
 
 # Commands to be executed before the prompt is displayed
 # Save current working dir
