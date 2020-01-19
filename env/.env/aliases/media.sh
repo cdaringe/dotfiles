@@ -4,7 +4,7 @@ function movToGif() {
 }
 
 function mp4ToGif() {
-  `ffmpeg -i $1 -r 5 -f gif - | gifsicle --optimize=4 --delay=20 > $1.gif`;
+  `ffmpeg -i $1 -filter_complex "fps=5,scale=w=250:h=-1" -f gif - | gifsicle --optimize=4 --delay=20 > $1.gif`;
 }
 
 
