@@ -7,9 +7,9 @@ load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use
   fi
-  if [[ -f .tool-versions && -r .tool-versions ]]; then
-    asdf local $(cat .tool-versions)
-  fi
+  # if [[ -f .tool-versions && -r .tool-versions ]]; then
+    # asdf local $(cat .tool-versions)
+  # fi
 }
 
 cd() { builtin cd "$@"; 'load-nvmrc'; }
