@@ -30,3 +30,20 @@ i*86)
   BITS=?
   ;;
 esac
+
+function install_the_world_apt () {
+  sudo apt-get install \
+    jq \
+    bat \
+    curl \
+    silversearcher-ag \
+    stow \
+    git \
+    vim \
+    tmux
+  if [ ! -z nvm ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+  fi
+  printf "remember to also:\n\tgit_upload_ssh_key\n\tballervim\n\tsync vscode settings"
+  echo
+}
