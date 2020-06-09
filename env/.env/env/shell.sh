@@ -24,6 +24,8 @@ shopt -s checkwinsize
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
+  # enable tab-style completions
+  [[ $- = *i* ]] && bind TAB:menu-complete
 fi
 
 # osx, brew install bash-completion

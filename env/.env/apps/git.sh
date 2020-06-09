@@ -1,9 +1,11 @@
 # git
-alias bumpci="git commit --allow-empty -m 'fix(pkg): bump ci'"
+alias bumpci="git commit --allow-empty -m 'chore: bump ci'"
 alias gum="git branch -u origin/master"
 alias gs="git status"
 alias gpm="git pull origin master"
+alias gpum="git pull upstream master"
 alias gp="git pull origin HEAD"
+alias gpu="git pull upstream HEAD"
 alias gpush="git push origin $1";
 alias gpum="git push --set-upstream origin master"
 alias gph="git push origin HEAD"

@@ -11,5 +11,5 @@ load-nvmrc() {
     asdf local $(cat .tool-versions)
   fi
 }
-
+export SCARF_ANALYTICS=false
 cd() { builtin cd "$@"; 'load-nvmrc'; }

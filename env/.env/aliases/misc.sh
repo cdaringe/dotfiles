@@ -17,6 +17,5 @@ alias sourceme="source ~/.bash_profile"
 alias sm="sourceme"
 alias gamedie="echo 🎲 | pbcopy"
 alias aliases="$EDITOR ~/.aliases.sh"
-alias secrets="$EDITOR ~/.secrets.sh"
 
 

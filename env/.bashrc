@@ -25,6 +25,3 @@ if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 echo "🌲🌲🌲  ${NICKNAME:=$USER} // $OS $VER $BITS-bit ($ARCTCTR) 🌲🌲🌲"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# heroku autocomplete setup
-HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
