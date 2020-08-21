@@ -73,3 +73,10 @@ if [ $IS_LINUX ]; then
   # Change to saved working dir
   [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(< ${XDG_RUNTIME_DIR}/.cwd)"
 fi
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+if hash starship 2>/dev/null
+then
+  eval "$(starship init bash)"
+fi
