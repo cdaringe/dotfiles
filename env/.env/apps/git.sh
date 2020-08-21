@@ -1,19 +1,17 @@
 # git
 alias bumpci="git commit --allow-empty -m 'chore: bump ci'"
-alias gum="git branch -u origin/master"
 alias gs="git status"
-alias gpm="git pull origin master"
-alias gpum="git pull upstream master"
+alias gpm="git pull origin main"
+alias gpum="git pull upstream main"
 alias gp="git pull origin HEAD"
-alias gpu="git pull upstream HEAD"
-alias gpush="git push origin $1";
-alias gpum="git push --set-upstream origin master"
+alias pushhead="git push origin HEAD";
+alias gpum="git push --set-upstream origin main"
 alias gph="git push origin HEAD"
 alias gl="git log"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
 alias gc="git checkout"
-alias gcm='git checkout master'
+alias gcm='git checkout main'
 alias gd='git diff --ignore-space-change --ignore-all-space'
 alias gh="git config --get remote.origin.url"
 alias gpurgebranches="confirm 'Purge all non-current git branches?' && git branch --merged | grep -v \* | xargs git branch -D"

@@ -6,7 +6,7 @@ function uall () {
   echo '[dotfiles] committing...'
   git commit -m 'feat(dotfiles): enhancing the radness'
   echo '[dotfiles] merging...'
-  git pull origin master
+  git pull --rebase=false origin master
   echo '[dotfiles] pushing...'
   git push origin master
   echo '[dotfiles] patches submitted successfully!'
