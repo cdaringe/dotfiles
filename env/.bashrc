@@ -33,4 +33,5 @@ if [ -f ~/.secrets.sh ]; then . ~/.secrets.sh; fi
 ts "load_work"
 if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 
-echo "🌲🌲🌲  ${NICKNAME:=$USER} // $OS $VER $BITS-bit ($ARCTCTR) 🌲🌲🌲"
+# echo "🌲🌲🌲  ${NICKNAME:=$USER} // $OS $VER $BITS-bit ($ARCTCTR) 🌲🌲🌲"
+echo 🌲

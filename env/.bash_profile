@@ -3,13 +3,20 @@
 # setup startup profiling
 # ts = timestamp
 alias ts="true"
-if hash perl 2>/dev/null
+alias tsflush="true"
+tslog=""
+if hash gdate 2>/dev/null
 then
-  echo "ts,call" > ~/.startup.debug.csv
-  ## enable for debug mode
+  true
+  # enable for debug mode
+  # comment out-for noop!
+  # unalias ts
+  # unalias tsflush
   # function ts() {
-  #   _d=$(perl -MTime::HiRes=time -e "printf '%.9f, $1', time")
-  #   echo "$_d" >> ~/.startup.debug.csv
+  #   tslog="$tslog$(gdate +%s%N),$1\n"
+  # }
+  # function tsflush() {
+  #   printf "timestamp,call\n$tslog" > ~/.startup.debug.csv
   # }
 fi
 
@@ -17,3 +24,5 @@ ts "load_/etc/bashrc"
 if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 ts "load_~/.bashrc"
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+ts "done"
+tsflush

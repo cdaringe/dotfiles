@@ -51,8 +51,8 @@ fi
 
 IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi;)
 
-ts "load_iterm_integrations"
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# ts "load_iterm_integrations"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
