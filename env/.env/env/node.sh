@@ -9,12 +9,22 @@ function load_nvm () {
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
-function nvm_lazy () {
+function _load_nvm () {
   unset nvm;
+  unset node;
   load_nvm;
-  nvm "$@"
+}
+
+function nvm_lazy () {
+  _load_nvm;
+  nvm "$@";
+}
+function node_lazy () {
+  _load_nvm;
+  node "$@"
 }
 alias nvm="nvm_lazy"
+alias node="node_lazy"
 
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
