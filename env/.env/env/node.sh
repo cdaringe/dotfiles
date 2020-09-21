@@ -10,8 +10,8 @@ function load_nvm () {
 }
 
 function _load_nvm () {
-  unset nvm;
-  unset node;
+  unalias nvm;
+  unalias node;
   load_nvm;
 }
 
