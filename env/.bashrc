@@ -35,3 +35,7 @@ if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 
 # echo "🌲🌲🌲  ${NICKNAME:=$USER} // $OS $VER $BITS-bit ($ARCTCTR) 🌲🌲🌲"
 echo 🌲
+
+# fnm
+export PATH=/home/cdaringe/.fnm:$PATH
+eval "`fnm env --multi`"
