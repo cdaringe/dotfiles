@@ -52,4 +52,4 @@ if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 ts "done"
 tsflush
 
-echo 🌲
+# echo 🌲
