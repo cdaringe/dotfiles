@@ -1,2 +1,2 @@
 #!/bin/bash
-. ./.basher.sh
+. ~/.basher.sh

@@ -1,8 +1,9 @@
 #!/bin/bash
 # setup startup profiling
 # ts = timestamp
-alias ts="true"
-ts;
+function ts() {
+  true
+}
 alias tsflush="true"
 alias tslog=""
 if hash gdate 2>/dev/null
