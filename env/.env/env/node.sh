@@ -1,6 +1,6 @@
 #!/bin/bash
 export NODE_ENV='development'
-
+export PATH=/home/cdaringe/.fnm:$PATH
 eval "$(fnm env --multi)"
 # export NVM_DIR="$HOME/.nvm"
 # export IS_NVM_LOADED=;
@@ -26,7 +26,6 @@ eval "$(fnm env --multi)"
 # alias node="node_lazy"
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
-    # nvm use
     fnm use
   fi
   # if [[ -f .tool-versions && -r .tool-versions ]]; then
