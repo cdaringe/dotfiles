@@ -1,6 +1,6 @@
 #!/bin/bash
-export PATH="/home/cdaringe/.deno/bin:$PATH"
-export DENO_DIR=~/.deno
+export DENO_DIR="$HOME/.deno"
+export PATH="$DENO_DIR/bin:$PATH"
 function clear_deno () {
   rm -rf $DENO_DIR
 }
