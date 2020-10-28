@@ -22,6 +22,9 @@ then
 fi
 
 [ -z "$PS1" ] && return
+
+ts "load_/etc/bashrc"
+if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
@@ -44,8 +47,6 @@ if [ -f ~/.secrets.sh ]; then . ~/.secrets.sh; fi
 ts "load_work"
 if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 
-ts "load_/etc/bashrc"
-if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 ts "done"
 tsflush
 
