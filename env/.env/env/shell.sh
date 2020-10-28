@@ -54,10 +54,6 @@ IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi;)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
-export PS1="\W \\$ \[$(tput sgr0)\]"
-if [ $IS_LINUX ]; then
-  PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
-fi
 
 LANG="en_US.UTF-8"
 export LANG
@@ -110,3 +106,8 @@ alias powerdown="sudo shutdown -hP -t 1 now"
 
 alias dusimple="du -d 1 -h"
 [ -x /usr/local/bin/exa ] && alias ls="exa"
+
+export PS1="🌲\W \\$ \[$(tput sgr0)\]"
+if [ $IS_LINUX ]; then
+  PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi

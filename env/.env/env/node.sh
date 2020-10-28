@@ -1,7 +1,7 @@
 #!/bin/bash
 export NODE_ENV='development'
 export PATH=/home/cdaringe/.fnm:$PATH
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 # export NVM_DIR="$HOME/.nvm"
 # export IS_NVM_LOADED=;
 # function load_nvm () {
