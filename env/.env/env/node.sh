@@ -32,7 +32,6 @@ load-nvmrc() {
     # asdf local $(cat .tool-versions)
   # fi
 }
-cd() { builtin cd "$@"; 'load-nvmrc'; }
 export SCARF_ANALYTICS=false
 
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
