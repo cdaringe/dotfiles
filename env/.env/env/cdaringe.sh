@@ -6,12 +6,13 @@ function blog() {
     git clone git@github.com:cdaringe/blog "$BLOG_DIR"
   fi
   cd $BLOG_DIR
-  if ! test command pnpm &> /dev/null
-  then
-    npm install --global pnpm
-  fi
-  pnpm install
+  # gatsby not pnpm compatible :/
+  # if ! test command pnpm &> /dev/null
+  # then
+  #   npm install --global pnpm
+  # fi
+  yarn
   cd "$BLOG_DIR"
   code "$BLOG_DIR"
-  pnpm start
+  yarn start
 }
