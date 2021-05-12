@@ -1,5 +1,5 @@
 #!/bin/bash
-export NODE_ENV='development'
+# export NODE_ENV='development'
 export PATH=/home/cdaringe/.fnm:$PATH
 eval "$(fnm env)"
 # export NVM_DIR="$HOME/.nvm"
