@@ -55,3 +55,5 @@ alias ybs="yarn bootstrap"
 function node_dep_graph () {
   npx madge --image dependency-graph.png $1
 }
+
+alias p="pnpm"
