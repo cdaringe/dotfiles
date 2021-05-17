@@ -36,6 +36,8 @@ for file in ~/.env/env/*.sh; do
   ts "load_env_$file"
   . "$file"
 done
+. "$HOME/.env/env/__final__"
+
 for file in ~/.env/apps/*.sh; do
   ts "load_apps_$file"
   . "$file";

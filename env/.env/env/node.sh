@@ -32,7 +32,6 @@ load-nvmrc() {
     # asdf local $(cat .tool-versions)
   # fi
 }
-cd() { builtin cd "$@"; 'load-nvmrc'; }
 export SCARF_ANALYTICS=false
 
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
@@ -56,3 +55,5 @@ alias ybs="yarn bootstrap"
 function node_dep_graph () {
   npx madge --image dependency-graph.png $1
 }
+
+alias p="pnpm"
