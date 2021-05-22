@@ -57,3 +57,4 @@ function node_dep_graph () {
 }
 
 alias p="pnpm"
+alias pi="pnpm install"
