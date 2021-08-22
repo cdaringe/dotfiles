@@ -24,7 +24,7 @@ eval "$(fnm env)"
 # }
 # alias nvm="nvm_lazy"
 # alias node="node_lazy"
-load-nvmrc() {
+load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
   fi
@@ -58,3 +58,7 @@ function node_dep_graph () {
 
 alias p="pnpm"
 alias pi="pnpm install"
+alias x="pnpm exec"
+alias pd="pnpm dlx"
+
+

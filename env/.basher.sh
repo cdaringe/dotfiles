@@ -25,8 +25,7 @@ fi
 
 ts "load_/etc/bashrc"
 if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # bash specific aliases
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
