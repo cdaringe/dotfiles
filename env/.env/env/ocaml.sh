@@ -6,3 +6,5 @@ load-opam-dune() {
     eval $(opam env --switch=. --set-switch)
   fi
 }
+
+export OCAMLRUNPARAM=b
