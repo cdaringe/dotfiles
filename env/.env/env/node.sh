@@ -4,6 +4,12 @@ load_nvmrc() {
     fnm use
   fi
 }
+if command -v fnm &> /dev/null
+then
+  eval $(fnm env)
+fi
+
+
 export SCARF_ANALYTICS=false
 
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
