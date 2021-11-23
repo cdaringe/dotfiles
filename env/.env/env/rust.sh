@@ -15,10 +15,6 @@ function rustify () {
       # echo upserting crate $crate
       upsertGlobalCrate $crate
     done
-
-    alias z=zoxide
-    # eval "$(zoxide init bash)"
-    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
   fi
 
 }
