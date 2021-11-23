@@ -10,6 +10,7 @@ alias gph="git push origin HEAD"
 alias gl="git log"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
+alias gfa="git fetch --all"
 alias gc="git checkout"
 alias gcm='git checkout main'
 alias gd='git diff --ignore-space-change --ignore-all-space'
