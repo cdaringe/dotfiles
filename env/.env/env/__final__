@@ -1,5 +1,5 @@
 cd() {
   builtin cd "$@";
   'load_nvmrc';
-  'load-opam-dune';
+  # 'load-opam-dune';
 }
