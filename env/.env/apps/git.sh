@@ -11,8 +11,8 @@ alias gl="git log"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
 function gaf () {
-  git fetch --all || true
-  git remote prune origin
+  git fetch --all || true;
+  git remote prune origin;
 }
 alias gc="git checkout"
 alias gcm='git checkout main'
