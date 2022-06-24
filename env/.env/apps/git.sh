@@ -10,7 +10,7 @@ alias gph="git push origin HEAD"
 alias gl="git log"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
-function gaf () {
+function gfa () {
   git fetch --all || true;
   git remote prune origin;
 }
