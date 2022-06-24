@@ -10,7 +10,10 @@ alias gph="git push origin HEAD"
 alias gl="git log"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
-alias gfa="git fetch --all && git remote prune origin"
+function gaf () {
+  git fetch --all || true
+  git remote prune origin
+}
 alias gc="git checkout"
 alias gcm='git checkout main'
 alias gmom='gfa && git merge origin/main'
