@@ -1,4 +1,6 @@
 #!/bin/bash
+add_brew_install "navi"
+
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
