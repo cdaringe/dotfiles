@@ -4,7 +4,7 @@ function rustify () {
   if [ -f "$HOME/.cargo/env" ]; then
     . $HOME/.cargo/env
     # https://github.com/rust-unofficial/awesome-rust#productivity
-    global_crates=("zoxide" "bat" "fd" "bandwhich") #  "dust"
+    global_crates=("zoxide" "bat" "fd" "bandwhich" "cargo-edit") #  "dust"
 
     function upsertGlobalCrate () {
       if [ ! $(command -v $1) ]; then

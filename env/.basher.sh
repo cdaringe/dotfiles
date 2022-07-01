@@ -27,6 +27,10 @@ ts "load_/etc/bashrc"
 if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
+function command_exists () {
+  command -v "$1" &> /dev/null
+}
+
 # bash specific aliases
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 
@@ -37,10 +41,14 @@ for file in ~/.env/env/*.sh; do
 done
 . "$HOME/.env/env/__final__"
 
+. ~/.env/apps/_pre.sh;
 for file in ~/.env/apps/*.sh; do
-  ts "load_apps_$file"
-  . "$file";
+  if ! [[ $file =~ _p.*.sh ]]; then
+    ts "load_apps_$file"
+    . "$file";
+  fi
 done
+. ~/.env/apps/_post.sh;
 
 # load untracked files ;)
 ts "load_secrets"
