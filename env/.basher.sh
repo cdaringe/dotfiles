@@ -39,16 +39,12 @@ for file in ~/.env/env/*.sh; do
   ts "load_env_$file"
   . "$file"
 done
-. "$HOME/.env/env/__final__"
 
-. ~/.env/apps/_pre.sh;
+. ~/.env/apps_pre.sh;
 for file in ~/.env/apps/*.sh; do
-  if ! [[ $file =~ _p.*.sh ]]; then
-    ts "load_apps_$file"
-    . "$file";
-  fi
+  ts "load_apps_$file"
+  . "$file";
 done
-. ~/.env/apps/_post.sh;
 
 # load untracked files ;)
 ts "load_secrets"
@@ -56,7 +52,11 @@ if [ -f ~/.secrets.sh ]; then . ~/.secrets.sh; fi
 ts "load_work"
 if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 
+. ~/.env/env_post.sh;
+. ~/.env/apps_post.sh;
+
 ts "done"
 tsflush
+
 
 # echo 🌲

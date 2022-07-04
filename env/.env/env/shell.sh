@@ -27,14 +27,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   [[ $- = *i* ]] && bind TAB:menu-complete
 fi
 
-# osx, brew install bash-completion
-# ts "brew completions"
-# if [[ $(type -P "brew") ]]; then
-#   if [ -f $(brew --prefix)/etc/bash_completion ]; then
-#     . $(brew --prefix)/etc/bash_completion
-#   fi
-# fi
-
 export CLICOLOR=1
 
 # enable color support of ls and also add handy aliases
