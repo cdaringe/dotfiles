@@ -35,12 +35,16 @@ function command_exists () {
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 
 # load all env, apps, & aliases files
+. ~/.env/apps_pre.sh;
+
+## env
 for file in ~/.env/env/*.sh; do
   ts "load_env_$file"
   . "$file"
 done
 
-. ~/.env/apps_pre.sh;
+
+## apps
 for file in ~/.env/apps/*.sh; do
   ts "load_apps_$file"
   . "$file";
