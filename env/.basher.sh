@@ -1,4 +1,9 @@
 #!/bin/bash
+
+function command_exists () {
+  command -v "$1" &> /dev/null
+}
+
 # setup startup profiling
 # ts = timestamp
 function ts() {
@@ -27,9 +32,6 @@ ts "load_/etc/bashrc"
 if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
-function command_exists () {
-  command -v "$1" &> /dev/null
-}
 
 # bash specific aliases
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
