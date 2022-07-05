@@ -1,5 +1,5 @@
 #!/bin/bash
-add_brew_install "navi"
+add_brew_install "fnm"
 
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
