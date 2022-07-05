@@ -41,5 +41,3 @@ alias p="pnpm"
 alias pi="pnpm install"
 alias x="pnpm exec"
 alias pd="pnpm dlx"
-
-
