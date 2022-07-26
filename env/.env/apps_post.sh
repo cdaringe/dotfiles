@@ -24,6 +24,9 @@ function brew_install_all_cask () {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   brew_install_all || true
+  # use code as a key indicator if casks are missing.
+  # checking for cask presence is _slow_, so we cannot do it on shell
+  # init
   if ! command_exists code;
   then
     echo "warning: cask for 'code' not found. do you need to run 'brew_install_all_cask'?"
