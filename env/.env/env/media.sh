@@ -10,3 +10,7 @@ function mp4ToGif() {
 
 alias file_server="deno \
   https://deno.land/x/net/file_server.ts --allow-net"
+
+function mkvToMp4 () {
+  ffmpeg -i "$1" -codec copy "${1%.*}.mp4"
+}
