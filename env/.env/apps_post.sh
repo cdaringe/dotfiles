@@ -17,7 +17,7 @@ function brew_install_all_cask () {
     if ! brew list "$app" &>/dev/null;
     then
       echo ":: Installing $app"
-      brew install "$app"
+      brew install --cask "$app"
     fi
   done
 }
