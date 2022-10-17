@@ -1,12 +1,13 @@
 #!/bin/bash
+. "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
-function rustify () {
+function rustify() {
   if [ -f "$HOME/.cargo/env" ]; then
     . $HOME/.cargo/env
     # https://github.com/rust-unofficial/awesome-rust#productivity
     global_crates=("zoxide" "bat" "fd" "bandwhich" "cargo-edit") #  "dust"
 
-    function upsertGlobalCrate () {
+    function upsertGlobalCrate() {
       if [ ! $(command -v $1) ]; then
         cargo install "$1" -f
       fi
