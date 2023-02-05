@@ -2,3 +2,4 @@
 
 # devtime only secret :) nice try suckas
 export PCA_GQL_ADMIN_SECRET=airman
+export HASURA_GRAPHQL_ADMIN_SECRET="$PCA_GQL_ADMIN_SECRET"
