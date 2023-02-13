@@ -20,7 +20,7 @@ alias gmom='gfa && git merge origin/main'
 alias gfmom=gmom
 alias gfrom="gfa && git reset --hard origin/main"
 alias gd='git diff --ignore-space-change --ignore-all-space'
-alias gpurgebranches="confirm 'Purge all non-current git branches?' && git branch --merged | grep -v \* | xargs git branch -D"
+alias gpurgebranches="confirm 'Purge all non-current git branches?' && git branch --list | trim_line | grep -v '^main' | grep -v \* | xargs git branch -D"
 alias git-config-cdaringe="git config --global user.name cdaringe && git config --global user.email christopher.dieringer@gmail.com && git config --global core.editor vim && git config --global push.default current"
 
 function git_upload_ssh_key() {
