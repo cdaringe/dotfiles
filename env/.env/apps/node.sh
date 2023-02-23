@@ -1,6 +1,11 @@
 #!/bin/bash
 add_brew_install "fnm"
 
+if [[ -f "$HOME/.fnm/fnm" ]]; then
+  export PATH="/home/cdaringe/.fnm:$PATH"
+  eval "`fnm env`"
+fi
+
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
