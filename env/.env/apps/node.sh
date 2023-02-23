@@ -12,7 +12,7 @@ load_nvmrc() {
 }
 if command -v fnm &> /dev/null
 then
-  eval $(fnm env)
+  eval "$(fnm env)"
   eval "$(fnm env --use-on-cd)"
 fi
 
