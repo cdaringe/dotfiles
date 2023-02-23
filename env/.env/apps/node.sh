@@ -3,7 +3,6 @@ add_brew_install "fnm"
 
 if [[ -f "$HOME/.fnm/fnm" ]]; then
   export PATH="$HOME/.fnm:$PATH"
-  eval "`fnm env`"
 fi
 
 load_nvmrc() {
