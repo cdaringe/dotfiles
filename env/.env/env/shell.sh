@@ -37,7 +37,8 @@ if [ -x /usr/bin/dircolors ]; then
   alias grep='grep --color=auto'
 fi
 
-IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi;)
+export IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi)
+export IS_DARWIN=$(if [[ $OSTYPE == *"darwin"* ]]; then echo 1; fi)
 
 # ts "load_iterm_integrations"
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
@@ -55,27 +56,25 @@ export LANG
 if [ $IS_LINUX ]; then
   PROMPT_COMMAND='pwd > "${XDG_RUNTIME_DIR}/.cwd"'
   # Change to saved working dir
-  [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(< ${XDG_RUNTIME_DIR}/.cwd)"
+  [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(<${XDG_RUNTIME_DIR}/.cwd)"
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-if hash starship 2>/dev/null
-then
+if hash starship 2>/dev/null; then
   eval "$(starship init bash)"
 fi
 
-
-confirm () {
+confirm() {
   # call with a prompt string or use a default
   read -r -p "${1:-Are you sure? } [yN] " response
   case $response in
-    [yY][eE][sS]|[yY])
-      true
-      ;;
-    *)
-      false
-      ;;
+  [yY][eE][sS] | [yY])
+    true
+    ;;
+  *)
+    false
+    ;;
   esac
 }
 
@@ -83,11 +82,12 @@ function shutdown() {
   while true; do
     read -p "Do you wish to shutdown host: $(hostname)? [yn]" yn
     case $yn in
-      [Yy]*)
-        $(which shutdown) $@
-        return 0;;
-      [Nn]*) return 1;;
-      *) echo "Please answer yes or no.";;
+    [Yy]*)
+      $(which shutdown) $@
+      return 0
+      ;;
+    [Nn]*) return 1 ;;
+    *) echo "Please answer yes or no." ;;
     esac
   done
 }
@@ -103,3 +103,7 @@ export PS1="🌲\W \\$ \[$(tput sgr0)\]"
 if [ $IS_LINUX ]; then
   PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
+
+function trim_line() {
+  xargs printf "%s\n" "$@"
+}

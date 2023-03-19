@@ -1,6 +1,10 @@
 #!/bin/bash
 add_brew_install "fnm"
 
+if [[ -f "$HOME/.fnm/fnm" ]]; then
+  export PATH="$HOME/.fnm:$PATH"
+fi
+
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
@@ -8,7 +12,7 @@ load_nvmrc() {
 }
 if command -v fnm &> /dev/null
 then
-  eval $(fnm env)
+  eval "$(fnm env)"
   eval "$(fnm env --use-on-cd)"
 fi
 
