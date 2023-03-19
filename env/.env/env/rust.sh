@@ -1,5 +1,6 @@
 #!/bin/bash
 . "$HOME/.cargo/env"
+export RUST_BACKTRACE=1
 export PATH="$HOME/.cargo/bin:$PATH"
 function rustify() {
   if [ -f "$HOME/.cargo/env" ]; then
