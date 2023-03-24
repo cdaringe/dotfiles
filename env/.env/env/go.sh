@@ -1,4 +1,7 @@
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+#!/bin/bash
+if ! command_exists go; then
+  export GOPATH=$HOME/go
+  export GOROOT="$(/opt/homebrew/opt/go)"
+  export PATH=$PATH:$GOPATH/bin
+  export PATH=$PATH:$GOROOT/bin
+fi
