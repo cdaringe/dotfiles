@@ -107,3 +107,8 @@ fi
 function trim_line() {
   xargs printf "%s\n" "$@"
 }
+
+# Pretty print $PATH to shell
+function ppath() {
+  echo $PATH | tc ":" "\n"
+}

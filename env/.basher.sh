@@ -1,43 +1,17 @@
 #!/bin/bash
-
-function command_exists () {
-  command -v "$1" &> /dev/null
-}
-
-# setup startup profiling
-# ts = timestamp
-function ts() {
-  true
-}
-alias tsflush="true"
-alias tslog=""
-if hash gdate 2>/dev/null
-then
-  true
-  # enable for debug mode
-  # comment out-for noop!
-  # unalias ts
-  # unalias tsflush
-  # function ts() {
-  #   tslog="$tslog$(gdate +%s%N),$1\n"
-  # }
-  # function tsflush() {
-  #   printf "timestamp,call\n$tslog" > ~/.startup.debug.csv
-  # }
-fi
+. $HOME/.env/dotfiles_util.sh
 
 [ -z "$PS1" ] && return
 
 ts "load_/etc/bashrc"
 if [ -f /etc/bashrc ]; then . /etc/bashrc; fi
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-
+export PATH="$HOME/.local/bin:/usr/local/sbin:$PATH"
 
 # bash specific aliases
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 
 # load all env, apps, & aliases files
-. ~/.env/apps_pre.sh;
+. ~/.env/apps_pre.sh
 
 ## env
 for file in ~/.env/env/*.sh; do
@@ -45,24 +19,24 @@ for file in ~/.env/env/*.sh; do
   . "$file"
 done
 
-
-## apps
+# ## apps
 for file in ~/.env/apps/*.sh; do
   ts "load_apps_$file"
-  . "$file";
+  . "$file"
 done
 
-# load untracked files ;)
+# # load untracked files ;)
 ts "load_secrets"
 if [ -f ~/.secrets.sh ]; then . ~/.secrets.sh; fi
 ts "load_work"
 if [ -f ~/.work.sh ]; then . ~/.work.sh; fi
 
-. ~/.env/env_post.sh;
-. ~/.env/apps_post.sh;
+ts "env_post"
+. $HOME/.env/env_post.sh
+ts "apps_app"
+. $HOME/.env/apps_post.sh
 
 ts "done"
 tsflush
-
 
 # echo 🌲

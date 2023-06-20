@@ -1,6 +1,13 @@
 #!/bin/bash
-. "$HOME/.cargo/env"
+
+# setting PATH as the first operation in this module is significant.
+# setting cargo first in the path is significant.
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# cargo wants us to do this. really, it should no op in its current form, but
+# we call it for safety anyway :)
+. "$HOME/.cargo/env"
+
 function rustify() {
   if [ -f "$HOME/.cargo/env" ]; then
     . $HOME/.cargo/env
