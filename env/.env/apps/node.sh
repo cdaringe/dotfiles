@@ -1,13 +1,24 @@
 #!/bin/bash
 add_brew_install "fnm"
 
+if [[ -f "$HOME/.fnm/fnm" ]]; then
+  export PATH="$HOME/.fnm:$PATH"
+fi
+
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
   fi
 }
+<<<<<<< HEAD
 if command -v fnm &>/dev/null; then
   eval "$(fnm env)"
+=======
+if command -v fnm &> /dev/null
+then
+  eval "$(fnm env)"
+  eval "$(fnm env --use-on-cd)"
+>>>>>>> a73f8ace7fe805b34e20d84c8c603f1997bcd932
 fi
 
 export SCARF_ANALYTICS=false

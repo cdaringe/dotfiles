@@ -1,9 +1,8 @@
 #!/bin/bash
+export RUST_BACKTRACE=1
 
-# setting PATH as the first operation in this module is significant.
-# setting cargo first in the path is significant.
+# setting PATH as the before calling .cargo/env is significant.
 export PATH="$HOME/.cargo/bin:$PATH"
-
 # cargo wants us to do this. really, it should no op in its current form, but
 # we call it for safety anyway :)
 . "$HOME/.cargo/env"
