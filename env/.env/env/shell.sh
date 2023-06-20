@@ -110,5 +110,5 @@ function trim_line() {
 
 # Pretty print $PATH to shell
 function ppath() {
-  echo $PATH | tc ":" "\n"
+  echo $PATH | tr ":" "\n"
 }
