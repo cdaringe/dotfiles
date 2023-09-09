@@ -1,7 +1,12 @@
 #!/bin/bash
-. "$HOME/.cargo/env"
 export RUST_BACKTRACE=1
+
+# setting PATH as the before calling .cargo/env is significant.
 export PATH="$HOME/.cargo/bin:$PATH"
+# cargo wants us to do this. really, it should no op in its current form, but
+# we call it for safety anyway :)
+. "$HOME/.cargo/env"
+
 function rustify() {
   if [ -f "$HOME/.cargo/env" ]; then
     . $HOME/.cargo/env

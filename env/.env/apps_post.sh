@@ -13,6 +13,7 @@ function brew_install_all() {
 function brew_install_all_cask() {
   for app in "${brew_to_install_cask[@]}"; do
     echo "checking $app"
+    # check if cask app name is present
     if ! brew list "$app" &>/dev/null; then
       echo ":: Installing $app"
       brew install --cask "$app"

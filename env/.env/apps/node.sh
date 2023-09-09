@@ -10,34 +10,30 @@ load_nvmrc() {
     fnm use
   fi
 }
-if command -v fnm &> /dev/null
-then
+if command_exists fnm; then
   eval "$(fnm env)"
-  eval "$(fnm env --use-on-cd)"
 fi
-
 
 export SCARF_ANALYTICS=false
 
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
 
-function npxbrk () {
-  node --inspect-brk ./node_modules/.bin/$@
+function npxbrk() {
+  node --inspect-brk "./node_modules/.bin/$@"
 }
-
 
 ## npm
 alias nga="mv .npmrc .npmrcbu" # npmrc... go away!
 alias ncb="mv .npmrcbu .npmrc" # npmrc... come back!
 alias pkg="cat package.json | jq ."
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
-function npxd () {
+function npxd() {
   node --inspect-brk ./node_modules/.bin/$@
 }
 
 alias ybs="yarn bootstrap"
 
-function node_dep_graph () {
+function node_dep_graph() {
   npx madge --image dependency-graph.png $1
 }
 
