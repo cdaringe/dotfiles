@@ -40,4 +40,4 @@ function node_dep_graph() {
 alias p="pnpm"
 alias pi="pnpm install"
 alias x="pnpm exec"
-alias pd="pnpm dlx"
+#alias pd="pnpm dlx"
