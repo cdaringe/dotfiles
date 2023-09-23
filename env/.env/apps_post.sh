@@ -15,7 +15,7 @@ function brew_install_all_cask() {
     echo "checking $app"
     # check if cask app name is present
     if ! brew list "$app" &>/dev/null; then
-      echo ":: Installing $app"
+      echo ":: Installing $app (ensure 'brew tap homebrew/cask-versions' if fails)"
       brew install --cask "$app"
     fi
   done
