@@ -16,7 +16,9 @@ function gfa() {
 }
 alias gc="git checkout"
 alias gcm='git checkout main'
+alias gcn='git checkout next'
 alias gmom='gfa && git merge origin/main'
+alias gmon='gfa && git merge origin/next'
 alias gfmom=gmom
 alias gfrom="gfa && git reset --hard origin/main"
 alias gfron="gfa && git reset --hard origin/next"
