@@ -25,6 +25,7 @@ alias gfron="gfa && git reset --hard origin/next"
 alias gd='git diff --ignore-space-change --ignore-all-space'
 alias gpurgebranches="confirm 'Purge all non-current git branches?' && git branch --list | trim_line | grep -v '^main' | grep -v \* | xargs git branch -D"
 alias git-config-cdaringe="git config --global user.name cdaringe && git config --global user.email christopher.dieringer@gmail.com && git config --global core.editor vim && git config --global push.default current"
+alias gtrack='git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)'
 
 function git_upload_ssh_key() {
   read -p "Enter github email : " email
