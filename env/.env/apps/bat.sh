@@ -1,3 +1,5 @@
 #!/usr/env/bin bash
-alias cat='bat'
+if [ $IS_DARWIN ]; then
+  alias cat='bat'
+fi
 #BAT_CONFIG_DIR="$(bat cache --config-dir)"
