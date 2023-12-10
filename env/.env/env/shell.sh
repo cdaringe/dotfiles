@@ -112,3 +112,8 @@ function trim_line() {
 function ppath() {
   echo $PATH | tr ":" "\n"
 }
+
+function dotenv() {
+  # shellcheck disable=SC2046
+  [ ! -f .env ] || export $(grep -v '^#' .env | xargs)
+}
