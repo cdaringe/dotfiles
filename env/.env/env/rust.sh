@@ -26,3 +26,5 @@ function rustify() {
   fi
 
 }
+
+alias clippyfix="cargo clippy --fix --allow-staged --allow-dirty"
