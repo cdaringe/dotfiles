@@ -1,6 +1,5 @@
 #!/bin/bash
 export DOCKER_CLI_EXPERIMENTAL=enabled
-alias docker="podman";
 function dkilla () {
   printf "\n==== Docker: Container Purge ====\n"
   printf "Purging $(docker ps -aq | wc -w | xargs) containers\n"
