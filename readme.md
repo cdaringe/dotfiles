@@ -2,8 +2,12 @@
 
 cdaringe's rad hot dotfiles
 
+## prereqs
+
+- `[brew?] install stow`, [ref](https://www.gnu.org/software/stow/)
+- `git clone <this-repo>`
+
 ## usage
 
-- `git clone <this-repo>`
-- `[brew?] install stow`, [ref](https://www.gnu.org/software/stow/)
-- `rm -f .profile .bashrc && cd dotfiles && stow env`
+- `cd <this-repo>`
+- `bash link.sh`
