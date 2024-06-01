@@ -1,8 +1,11 @@
 #!/bin/bash
 export DOCKER_CLI_EXPERIMENTAL=enabled
-if [ ! -f /usr/local/bin/docker ]; then
+
+
+if command_exists podman; then
   alias docker="podman";
 fi
+
 function dkilla () {
   printf "\n==== Docker: Container Purge ====\n"
   printf "Purging $(docker ps -aq | wc -w | xargs) containers\n"
