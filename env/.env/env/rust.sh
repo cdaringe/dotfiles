@@ -1,7 +1,7 @@
 #!/bin/bash
 export RUST_BACKTRACE=1
 
-if [ -f $HOME/.cargo/bin ]; then
+if [ -d "$HOME/.cargo/bin" ]; then
   # setting PATH as the before calling .cargo/env is significant.
   export PATH="$HOME/.cargo/bin:$PATH"
   # cargo wants us to do this. really, it should no op in its current form, but
