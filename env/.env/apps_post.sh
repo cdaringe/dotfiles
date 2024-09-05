@@ -2,8 +2,8 @@
 function brew_install_all() {
   if command_exists node; then
     local current_pwd="$PWD"
-    cd -- "$(dirname -- "${BASH_SOURCE[0]}")" || exit
-    node ./apps_post.js "${brew_to_install[@]}"
+    local src_dir="$(dirname -- "${BASH_SOURCE[0]}")"
+    node "$src_dir/apps_post.js" "${brew_to_install[@]}"
     cd "$current_pwd" || exit
   else
     echo "@warning - install node.js ASAP to auto install brew deps"
