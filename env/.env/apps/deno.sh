@@ -1,6 +1,11 @@
 #!/bin/bash
 export DENO_DIR="$HOME/.deno"
 export PATH="$DENO_DIR/bin:$PATH"
+DENO_ENV_FILE="$DENO_DIR/env"
+
+if [ -f "$DENO_ENV_FILE" ]; then
+  . "$DENO_ENV_FILE"
+fi
 
 deno_completions_filename=$HOME/.local/share/bash-completion/completions/deno.bash
 if command_exists deno; then
