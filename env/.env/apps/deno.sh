@@ -16,8 +16,8 @@ deno_completions_filename=$HOME/.local/share/bash-completion/completions/deno.ba
 #   source "$deno_completions_filename"
 # fi
 
-function install_rad_next () {
-  deno install --unstable -A -n rad https://raw.githubusercontent.com/cdaringe/rad/next/src/bin.ts
+function install_rad () {
+  deno install --global --unstable -A -n rad https://raw.githubusercontent.com/cdaringe/rad/main/src/bin.ts
 }
 function install_deno_latest {
   clear_deno
