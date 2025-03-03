@@ -1,4 +1,5 @@
 #!/bin/bash
 function ollama_ui() {
+  echo "un/pw: admin@admin.com / admin"
   docker run -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 }
