@@ -1,5 +1,10 @@
 #!/bin/bash
 . ~/.basher.sh
-#sledge:binary path
-export SLEDGE_BIN=/Users/c0d01a5/.sledge/bin
-export PATH="${PATH}:${SLEDGE_BIN}"
+
+
+# fnm
+FNM_PATH="/home/cdaringe/.fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
