@@ -8,7 +8,7 @@ alias gprf="git pull --rebase=false"
 alias pushhead="git push origin HEAD"
 alias gpum="git push --set-upstream origin main"
 alias gph="git push origin HEAD"
-alias gl="git log"
+alias gl="git log --date=local"
 alias gbl="git branch --list"
 alias gba="git branch --list -a"
 function gfa() {
@@ -45,6 +45,10 @@ function git_upload_ssh_key() {
   echo
   confirm
   curl -u "$githubuser:$githubpass" -X POST -d "{\"title\":\"$(hostname)\",\"key\":\"$pub\"}" --header "x-github-otp: $otp" https://api.github.com/user/keys
+}
+
+function git_editor_vscode() {
+  git config --global core.editor "code --wait"
 }
 
 function git_update_author_old_to_new_bad_email_good_email_username_3argstotal() {
