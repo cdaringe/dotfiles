@@ -6,7 +6,7 @@ function brew_install_all() {
     node "$src_dir/apps_post.js" "${brew_to_install[@]}"
     cd "$current_pwd" || exit
   else
-    echo "@warning - install node.js ASAP to auto install brew deps"
+    echo "@warning - install node.js ASAP to auto install brew deps (brew install fnm)"
   fi
 }
 
