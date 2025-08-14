@@ -1,4 +1,32 @@
 #!/bin/bash
+declare -a PROMPT_COMMANDS
+
+function __set_title_to_command {
+  # Don't set for shell builtins or empty lines
+  [[ -z "$BASH_COMMAND" ]] && return
+  case "$BASH_COMMAND" in
+    *\033]*) return ;; # Avoid escape sequences
+    "") return ;;
+  esac
+  local cmd="${BASH_COMMAND%% *}"  # get the first word
+  case "$cmd" in
+    ls|cd|pwd|clear) return ;;
+  esac
+  echo -ne "\033]0;▶ $cmd\007"
+}
+
+function __reset_terminal_title {
+  echo -ne "\033]0;${PWD}\007"
+  for cmd in "${PROMPT_COMMANDS[@]}"; do
+    eval "$cmd"
+  done
+}
+
+# Set traps
+trap '__set_title_to_command' DEBUG
+PROMPT_COMMAND=__reset_terminal_title
+
+
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -54,7 +82,7 @@ export LANG
 # Commands to be executed before the prompt is displayed
 # Save current working dir
 if [ $IS_LINUX ]; then
-  PROMPT_COMMAND='pwd > "${XDG_RUNTIME_DIR}/.cwd"'
+  PROMPT_COMMANDS+=('pwd > "${XDG_RUNTIME_DIR}/.cwd"')
   # Change to saved working dir
   [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(<${XDG_RUNTIME_DIR}/.cwd)"
 fi
@@ -77,6 +105,8 @@ confirm() {
     ;;
   esac
 }
+
+# PROMPT_COMMAND='echo -ne "\033]0;${BASH_COMMAND:-}\007"'
 
 function shutdown() {
   while true; do

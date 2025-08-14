@@ -1,4 +1,4 @@
 #!/bin/bash
-if command_exists zig; then
-  export CC="zig cc"
-fi
+# if command_exists zig; then
+  # export CC="zig cc"
+# fi
