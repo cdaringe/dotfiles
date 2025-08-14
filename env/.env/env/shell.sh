@@ -117,3 +117,37 @@ function dotenv() {
   # shellcheck disable=SC2046
   [ ! -f .env ] || export $(grep -v '^#' .env | xargs)
 }
+
+run_times() {
+  local num_times
+  if [[ $# -lt 3 || "$2" != "--" ]]; then
+    echo "Usage: run_times NUM_TIMES -- COMMAND [ARGS...]"
+    return 1
+  fi
+  num_times=$1
+  shift 2
+  for ((i=1; i<=num_times; i++)); do
+    "$@"
+  done
+}
+
+
+run_times_count() {
+  local num_times success=0 fail=0
+  if [[ $# -lt 3 || "$2" != "--" ]]; then
+    echo "Usage: run_times NUM_TIMES -- COMMAND [ARGS...]"
+    return 1
+  fi
+  num_times=$1
+  shift 2
+  for ((i=1; i<=num_times; i++)); do
+    "$@"
+    if [[ $? -eq 0 ]]; then
+      ((success++))
+    else
+      ((fail++))
+    fi
+  done
+  echo "Success: $success"
+  echo "Failed: $fail"
+}
