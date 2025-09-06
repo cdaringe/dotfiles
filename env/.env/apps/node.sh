@@ -6,7 +6,7 @@ if [[ -f "$HOME/.fnm/fnm" ]]; then
 fi
 
 # in nix, we put global packages here
-if [[ -f "$HOME/.npm-packages/bin/" ]]; then
+if [[ -d "$HOME/.npm-packages/bin" ]]; then
   export PATH="$HOME/.npm-packages/bin:$PATH"
 fi
 
