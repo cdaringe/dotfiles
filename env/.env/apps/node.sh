@@ -5,6 +5,11 @@ if [[ -f "$HOME/.fnm/fnm" ]]; then
   export PATH="$HOME/.fnm:$PATH"
 fi
 
+# in nix, we put global packages here
+if [[ -f "$HOME/.npm-packages/bin/" ]]; then
+  export PATH="$HOME/.npm-packages/bin:$PATH"
+fi
+
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
