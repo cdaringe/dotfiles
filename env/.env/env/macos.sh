@@ -43,3 +43,6 @@ function set_vscode_defaults() {
 
     echo "Done! VS Code is now the default for all specified extensions."
 }
+
+alias files_vscode="set_vscode_defaults"
+alias extensions_vscode="set_vscode_defaults"
