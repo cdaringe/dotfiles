@@ -7,6 +7,10 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
+# in nix, we put global packages here
+if [[ -d "$HOME/.npm-packages/bin" ]]; then
+  export PATH="$HOME/.npm-packages/bin:$PATH"
+fi
 
 load_nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
