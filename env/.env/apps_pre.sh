@@ -4,8 +4,11 @@
 export PATH="/opt/homebrew/bin/:$PATH"
 
 # See apps_post.js for syntax
-brew_to_install=("bash" "fd" "hub" "tree" "jq" "mosh" "ffmpeg")
+# fd - find (fast!)
+# witr - "why is it running"
+brew_to_install=("bash" "fd" "hub" "tree" "jq" "mosh" "ffmpeg" "witr")
 # openlens - manually install @alebcay/openlens-node-pod-menu, (optional, maybe) @andrea-falco/lens-multi-pod-logs
+# duti - https://github.com/moretension/duti/
 brew_to_install_cask=("bluesnooze" "duti" "obs" "flux" "flycut" "rectangle" "iterm2" "visual-studio-code" "wireshark" "openlens")
 function add_brew_install() {
   brew_to_install+=("$1")

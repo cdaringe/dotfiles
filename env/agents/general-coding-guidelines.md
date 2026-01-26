@@ -13,6 +13,7 @@
 - Prefer expressions over statements.
 - Use higher-order functions (map, filter, reduce) over loops.
 - Avoid early returns - use expressions and pattern matching instead.
+- Arity: 1-2 is OK. If >3 are needed, use an options object/struct.
 
 ## Error Handling
 
@@ -27,6 +28,12 @@
 - Use discriminated unions over inheritance hierarchies.
 - Leverage the type system to encode business rules.
 - Prefer compile-time guarantees over runtime checks.
+- Ternary usage is strongly encouraged to express conditional logic in expressions. AVOID `if` statements when ternaries can be used. `if`'s invite mutation, which is generally prohibited.
+- Case analysis: use exhaustive case analysis. If using `switch` statements, the default case should have `never` type to ensure exhaustiveness. Alternatively, ts-pattern (or lighterweight equivalent IFF PRESENT ONLY) should be used for pattern matching.
+
+## Casting
+
+- AVOID CASTING. Use type guards, pattern matching, or type refinements instead.
 
 ## Naming & Clarity
 

@@ -2,6 +2,6 @@
 function claudec() {
   claude "$@" 'Read ~/agents/agents.md. Traverse the guidelines lazily when your task topics match.'
 }
-function claudedangerous() {
+function dc() {
   claudec  --dangerously-skip-permissions "$@"
 }
