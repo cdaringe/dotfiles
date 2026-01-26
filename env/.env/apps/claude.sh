@@ -1,4 +1,7 @@
 #!/usr/env/bin bash
-function claudedangerous() {
-  claude --dangerously-skip-permissions "$@"
+function claudec() {
+  claude "$@" 'Read ~/agents/agents.md. Traverse the guidelines lazily when your task topics match.'
+}
+function dc() {
+  claudec  --dangerously-skip-permissions "$@"
 }

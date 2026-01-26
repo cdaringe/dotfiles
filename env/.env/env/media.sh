@@ -1,5 +1,7 @@
 #!/bin/bash
 function movToGif() {
+  # Lower quality/minimal file size:
+  #   ffmpeg -i "$1" -vf "fps=5,scale=320:-1" -f gif - | gifsicle --optimize=3 --lossy=200 --colors=64 --delay=20 > "$1.gif"
   `ffmpeg -i $1 -pix_fmt rgb24 -r 5 -f gif - | gifsicle --optimize=4 --delay=20 > $1.gif`;
 }
 
