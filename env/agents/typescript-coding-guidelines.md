@@ -13,6 +13,7 @@
 - Leverage optional chaining (`?.`) and nullish coalescing (`??`).
 - Use function composition and piping utilities, OR, linear, flat code derived from functional patterns.
 - Avoid `this` - prefer free functions over methods.
+- Avoid nested function definitions greater than a few lines of code long. Prefer top-level functions.
 
 ## Result Types
 
@@ -44,6 +45,11 @@ type State<T, E> =
   | { status: 'success'; data: T }
   | { status: 'error'; data: E }
 ```
+
+## Consolidated state management
+
+- **Consolidate state containers**. For example, prefer a single `useReducer` over multiple `useState` calls. Data modeling like `type Foo = { phase: "loading", data: null } | { phase: "loaded", data: Data } | { phase: "error", error: Error }` is preferred.
+- If you have expressions like `setError` and `setSuccess` and `setLoading`, it is a huge red code smell.
 
 ## Pattern Matching & Exhaustiveness
 
@@ -146,7 +152,7 @@ function processData(data: string) {
 }
 ```
 
-## Avoid
+## AVOID THESE PATTERNS
 
 - **`console.*` methods - inject loggers instead.**
 - **Functions with 3+ positional parameters - use objects.**
@@ -157,3 +163,4 @@ function processData(data: string) {
 - Side effects in the middle of call chains.
 - `null` - prefer explicit Option types or undefined.
 - Default exports - prefer named exports for better refactoring.
+- Use server code in client code. Some dependencies, like zod, graphql, fs, etc. should not be used in client code.
