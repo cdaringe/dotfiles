@@ -1,6 +1,17 @@
 # General Coding Guidelines
 
-## Core Principles
+## Change lifecycle
+
+- AI agents frequently do many tasks in parallel, AND do tasks over many sessions.
+To ensure we can pick up on coding work, utilize ON DISK plans rigorously.
+  - If unspecified otherwise:
+    - write approved plans into docs/plans/work-in-progress/
+    - when a plan completes, move it to docs/plans/in-review/
+    - post review, then move it to docs/plans/completed
+  - It is generally NOT acceptable to leave status update files in the root of the repo
+  - If plans are found unfinished, prompt the user to review & progress them
+
+## Core coding principles
 
 - **Functional style is preferred** over imperative and OOP styles.
 - **Immutability by default** - avoid mutation whenever possible.

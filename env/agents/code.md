@@ -4,9 +4,9 @@ AI agents should read any of the following documents, AS NEEDED.
 DO NOT READ THE FOLLOWING FILES UNLESS THEY ARE RELEVANT TO YOUR CURRENT TASK.
 
 
-## General purpose coding guidelines
+## General coding guidelines
 
-See [./general-purpose-guidelines.md](general-purpose-guidelines.md)
+See [./general-coding-guidelines.md](general-coding-guidelines.md)
 
 ## Framework specific guidelines
 
