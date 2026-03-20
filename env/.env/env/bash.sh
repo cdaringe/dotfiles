@@ -181,3 +181,10 @@ run_times_count() {
   echo "Success: $success"
   echo "Failed: $fail"
 }
+
+# disable bracketed paste
+if [[ $- == *i* ]]; then
+  bind 'set enable-bracketed-paste off'
+  printf '\e[?2004l'
+  PROMPT_COMMAND+='; printf "\e[?2004l"'
+fi

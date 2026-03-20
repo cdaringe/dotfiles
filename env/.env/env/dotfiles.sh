@@ -6,9 +6,9 @@ function uall () {
   echo '[dotfiles] committing...'
   git commit -m 'feat(dotfiles): enhancing the radness'
   echo '[dotfiles] merging...'
-  git pull --rebase=false origin master
+  git pull --rebase=false origin master --verbose
   echo '[dotfiles] pushing...'
-  git push origin master
+  git push origin master --verbose
   echo '[dotfiles] patches submitted successfully!'
   stow env
   cd $l_pwd
