@@ -1,34 +1,11 @@
 #!/bin/bash
-add_brew_install "fnm"
-
-# macos default
-FNM_PATH="$HOME/.fnm/fnm"
-
-# 
-if [ $IS_LINUX ]; then
-  FNM_PATH="$HOME/.local/share/fnm"
-fi
-
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
-
-# in nix, we put global packages here
-if [[ -d "$HOME/.npm-packages/bin" ]]; then
-  export PATH="$HOME/.npm-packages/bin:$PATH"
-fi
-
-# in nix, we put global packages here
-if [[ -d "$HOME/.npm-packages/bin" ]]; then
-  export PATH="$HOME/.npm-packages/bin:$PATH"
-fi
 
 load_nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
+  if command_exists fnm && [[ -f .nvmrc && -r .nvmrc ]]; then
     fnm use
   fi
 }
+
 if command_exists fnm; then
   eval "$(fnm env)"
 fi
@@ -38,16 +15,15 @@ export SCARF_ANALYTICS=false
 alias nono="rm -rf node_modules package-lock.json yarn.lock"
 
 function npxbrk() {
-  node --inspect-brk "./node_modules/.bin/$@"
+  node --inspect-brk "./node_modules/.bin/$1" "${@:2}"
 }
 
 ## npm
 alias nga="mv .npmrc .npmrcbu" # npmrc... go away!
 alias ncb="mv .npmrcbu .npmrc" # npmrc... come back!
-alias pkg="cat package.json | jq ."
-alias nono="rm -rf node_modules package-lock.json yarn.lock"
+alias pkg="jq . package.json"
 function npxd() {
-  node --inspect-brk ./node_modules/.bin/$@
+  node --inspect-brk "./node_modules/.bin/$1" "${@:2}"
 }
 
 alias ybs="yarn bootstrap"
