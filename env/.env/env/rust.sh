@@ -2,7 +2,9 @@
 export RUST_BACKTRACE=1
 
 if [ -d "$HOME/.rustup" ]; then
-  export PATH="$(brew --prefix rustup)/bin:$PATH"
+  if [ $IS_DARWIN]; then
+    export PATH="$(brew --prefix rustup)/bin:$PATH"
+  fi
 fi
 
 if [ -f "$HOME/.cargo/env" ]; then

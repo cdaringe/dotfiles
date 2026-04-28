@@ -36,8 +36,9 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=50000
+HISTFILESIZE=100000
+HISTTIMEFORMAT='%F %T '
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -47,6 +48,7 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
+#shopt -s cdspell
 
 ts "/etc/bash_completion"
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -127,7 +129,11 @@ alias network="sudo $EDITOR /etc/network/interfaces"
 alias powerdown="sudo shutdown -hP -t 1 now"
 
 alias dusimple="du -d 1 -h"
-[ -x /usr/local/bin/exa ] && alias ls="exa"
+if command -v eza &>/dev/null; then
+  alias ls="eza"
+elif command -v exa &>/dev/null; then
+  alias ls="exa"
+fi
 
 export PS1="🌲\W \\$ \[$(tput sgr0)\]"
 if [ $IS_LINUX ]; then

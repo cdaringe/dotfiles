@@ -6,26 +6,21 @@
 - Use `as const` assertions for literal types.
 - Leverage union types and discriminated unions over enums.
 - Define narrow, precise types - avoid `any` and minimize `unknown`.
+- New projects should always enable strictest compiler settings (strict: true, noUncheckedIndexAccess: true).
+
+## Type definitions
+
+- Prefer `T[]` vs `Array<T>`
+
 
 ## Functional Patterns
 
-- Use `Array.map`, `filter`, `reduce` over imperative loops.
+- Prefer functional, immutable styles using Array & Object prototype methods.
+- Use `Array.map`, `filter`, `reduce` over imperative loops. `for loops` are discouraged.
 - Leverage optional chaining (`?.`) and nullish coalescing (`??`).
 - Use function composition and piping utilities, OR, linear, flat code derived from functional patterns.
 - Avoid `this` - prefer free functions over methods.
 - Avoid nested function definitions greater than a few lines of code long. Prefer top-level functions.
-
-## Result Types
-
-```typescript
-// Prefer this pattern
-type Result<T, E> = { ok: true; value: T } | { ok: false; error: E }
-
-// Over throwing exceptions
-function parse(input: string): Result<Data, ParseError> {
-  // implementation
-}
-```
 
 ## Immutability
 
@@ -65,19 +60,21 @@ function handle(state: State): string {
 }
 ```
 
-## Option/Maybe Types
+## Monadic Types - Result, Option, etc.
+
+- Use Result types for functions that can fail, instead of throwing exceptions.
 
 ```typescript
-type Option<T> = { some: true; value: T } | { some: false }
+// Prefer this pattern
+type Result<T, E> = { ok: true; data: T } | { ok: false; data: E }
 
-// Prefer Option over null/undefined in business logic
-function find<T>(arr: T[], pred: (x: T) => boolean): Option<T> {
-  const found = arr.find(pred)
-  return found !== undefined
-    ? { some: true, value: found }
-    : { some: false }
+// Over throwing exceptions
+function parse(input: string): Result<Data, ParseError> {
+  // implementation
 }
 ```
+
+- Avoid `Option<T>`, and prefer `T | undefined`
 
 ## Async Patterns
 
@@ -133,24 +130,14 @@ function createUser(id: string, email: string, role: string, metadata: object) /
 - Define logger interface for testability and flexibility.
 - Make logging a passed dependency, not an import.
 
-```typescript
-// Good: logger as dependency
-type LogLevel = 'info' | 'error' | 'debug'
-type LogMessage = unknown
-type Logger = ({ tags: [LogLevel, ...string[]], message: LogMessage }) => void;
+## Project & module rules
 
-function processData(
-  { data, userId }: ProcessInput,
-  logger: Logger
-): Result<Output, Error> {
-  logger({ tags: ["info", "processor"], message: `processing: ${userId}` });
-}
+- Prefer using `src/` for source, `dist/` for compiled output.
+- Prefer smaller, testable modules. In contrast to some popular programming opinions, large LOC count per module should be considered candidate for a refactor into a module. 500 LOC or more is a strong signal to modularize.
+- Group related modules into folders.
+- If the project can be formatted (using prettier, eslint --fix, deno fmt, etc), after you make changes run the formatter. It is common that the formatter is tricky to invoke. Learn how to do it and load it into your project local context when executing.
+- On comment usage: use comments over codeblocks that are nuanced or a bit complex. For functions that are already clearly semantic in nature (which you strict to write), do not add frivolous comments. Ask "is this block of work verb self descriptive?". If yes, don't add a comment. If the code block or function under scrutiny is not self descriptive OR has interesting behavior or reasons for existing, do add a concise descriptive comment.
 
-// Bad: direct console usage
-function processData(data: string) {
-  console.log('Processing...'); // Don't do this!
-}
-```
 
 ## AVOID THESE PATTERNS
 
