@@ -89,9 +89,11 @@ export LANG
 # Commands to be executed before the prompt is displayed
 # Save current working dir
 if [ "$IS_LINUX" ]; then
-  PROMPT_COMMANDS+=("pwd > ${XDG_RUNTIME_DIR}/.cwd")
+  TARGET_CWD="${XDG_RUNTIME_DIR}/.cwd"
+  PROMPT_COMMANDS+=("pwd > $TARGET_CWD")
   # Change to saved working dir
-  [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(<"${XDG_RUNTIME_DIR}"/.cwd)" || exit
+  # shellcheck disable=SC2164
+  [[ -f "$TARGET_CWD" ]] && cd "$TARGET_CWD"
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
