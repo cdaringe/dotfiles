@@ -13,5 +13,5 @@ function uall () {
   echo '[dotfiles] patches submitted successfully!'
   stow env
   cd $l_pwd
-  sourceme
+  source ~/.bash_profile
 }
