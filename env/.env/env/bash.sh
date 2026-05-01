@@ -192,5 +192,4 @@ run_times_count() {
 if [[ $- == *i* ]]; then
   bind 'set enable-bracketed-paste off'
   printf '\e[?2004l'
-  PROMPT_COMMAND+='; printf "\e[?2004l"'
 fi
