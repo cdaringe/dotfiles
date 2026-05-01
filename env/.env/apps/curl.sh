@@ -1,1 +1,4 @@
-alias headcurl='curl -sSkv -o /dev/null $@  2>&1'
+# shellcheck shell=bash
+function headcurl() {
+  curl -sSkv -o /dev/null "$@" 2>&1
+}

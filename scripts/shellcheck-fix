@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+if ! command -v shellcheck >/dev/null 2>&1; then
+  echo "shellcheck-fix: shellcheck was not found; nothing to fix." >&2
+  echo "Install it to enable this script. On macOS: brew install shellcheck" >&2
+  exit 0
+fi
+
+files=()
+while IFS= read -r file; do
+  [ -f "$file" ] || continue
+  files+=("$file")
+done < <(scripts/list-shell-files)
+
+if [ "${#files[@]}" -eq 0 ]; then
+  echo "shellcheck-fix: no shell files found"
+  exit 0
+fi
+
+patch_file="$(mktemp)"
+trap 'rm -f "$patch_file"' EXIT
+
+status=0
+shellcheck --format=diff "${files[@]}" >"$patch_file" || status=$?
+
+if [ "$status" -gt 1 ]; then
+  cat "$patch_file" >&2
+  exit "$status"
+fi
+
+if [ ! -s "$patch_file" ]; then
+  echo "shellcheck-fix: no autofixes available"
+  exit 0
+fi
+
+git apply --check "$patch_file"
+git apply "$patch_file"
+echo "shellcheck-fix: applied ShellCheck autofixes"

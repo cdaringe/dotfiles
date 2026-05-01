@@ -1,4 +1,4 @@
-#!/bin/bash
+# shellcheck shell=bash
 function command_exists() {
   command -v "$1" &>/dev/null
 }
@@ -15,7 +15,7 @@ if [ "$IS_DOTFILES_PROFILING" = "1" ]; then
   }
   function tsflush() {
     local dest=~/.startup.debug.csv
-    printf "timestamp,call\n$tslog" >$dest
+    printf '%s' "timestamp,call\n$tslog" >$dest
     echo contents flushed to $dest
   }
 else

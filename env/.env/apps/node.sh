@@ -1,10 +1,11 @@
 #!/bin/bash
+# shellcheck shell=bash
 add_brew_install "fnm"
 
 FNM_PATH="$HOME/.fnm/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env)"
 fi
 
 load_nvmrc() {
@@ -36,7 +37,7 @@ function npxd() {
 alias ybs="yarn bootstrap"
 
 function node_dep_graph() {
-  npx madge --image dependency-graph.png $1
+  npx madge --image dependency-graph.png "$1"
 }
 
 alias p="pnpm"

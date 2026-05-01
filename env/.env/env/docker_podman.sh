@@ -1,10 +1,11 @@
-#!/bin/bash
+# shellcheck shell=bash
 export DOCKER_CLI_EXPERIMENTAL=enabled
 function dkilla () {
   printf "\n==== Docker: Container Purge ====\n"
+  # shellcheck disable=SC2059
   printf "Purging $(docker ps -aq | wc -w | xargs) containers\n"
   for hash in $(docker ps -aq); do
-    docker rm -f $hash &
+    docker rm -f "$hash" &
   done
   wait
   printf "\nfin.\n"

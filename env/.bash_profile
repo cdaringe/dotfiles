@@ -1,2 +1,3 @@
 #!/bin/bash
-. ~/.basher.sh
+# shellcheck disable=SC1091
+. "$HOME"/.basher.sh

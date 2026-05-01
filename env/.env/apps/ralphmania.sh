@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 function ralphm() {
   PLUGINFILE="./plugin.ralph.ts"
   PLUGINPARAM=""

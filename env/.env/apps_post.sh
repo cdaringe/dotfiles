@@ -2,7 +2,9 @@
 function brew_install_all() {
   if command_exists node; then
     local current_pwd="$PWD"
-    local src_dir="$(dirname -- "${BASH_SOURCE[0]}")"
+    local src_dir
+    src_dir="$(dirname -- "${BASH_SOURCE[0]}")"
+    # shellcheck disable=SC2154
     node "$src_dir/apps_post.js" "${brew_to_install[@]}"
     cd "$current_pwd" || exit
   else
@@ -11,6 +13,7 @@ function brew_install_all() {
 }
 
 function brew_install_all_cask() {
+  # shellcheck disable=SC2154
   for app in "${brew_to_install_cask[@]}"; do
     echo "checking $app"
     # check if cask app name is present

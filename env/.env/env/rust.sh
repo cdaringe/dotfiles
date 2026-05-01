@@ -2,13 +2,15 @@
 export RUST_BACKTRACE=1
 
 if [ -d "$HOME/.rustup" ]; then
-  if [ $IS_DARWIN]; then
+  if [ "$IS_DARWIN" ]; then
+    # shellcheck disable=SC2155
     export PATH="$(brew --prefix rustup)/bin:$PATH"
   fi
 fi
 
 if [ -f "$HOME/.cargo/env" ]; then
-    . $HOME/.cargo/env
+    # shellcheck disable=SC1091
+    . "$HOME"/.cargo/env
 fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
@@ -27,13 +29,14 @@ function rustify() {
     global_crates=("zoxide" "bat" "bandwhich" "cargo-edit" "click") #  "dust"
 
     function upsertGlobalCrate() {
-      if [ ! $(command -v $1) ]; then
+      # shellcheck disable=SC2046
+      if [ ! $(command -v "$1") ]; then
         echo "cargo installing: $1"
         cargo install "$1" -f
       fi
     }
     for crate in "${global_crates[@]}"; do
       # echo upserting crate $crate
-      upsertGlobalCrate $crate
+      upsertGlobalCrate "$crate"
     done
 }

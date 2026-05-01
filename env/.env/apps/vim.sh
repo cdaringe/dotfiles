@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 ballervim () {
   local old=$PWD
   mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -7,8 +8,9 @@ ballervim () {
   mkdir -p ../colors && mv vim-colors-solarized/colors/* ../colors/ && \
   rm -rf syntastic && git clone https://github.com/scrooloose/syntastic.git && \
   rm -rf vdebug && git clone https://github.com/joonty/vdebug.git
-  cd $old
+  cd "$old" || exit
 }
 
 
+# shellcheck disable=SC2139
 alias vimrc="$EDITOR ~/.vimrc"

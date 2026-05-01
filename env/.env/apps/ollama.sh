@@ -1,5 +1,6 @@
 #!/bin/bash
 OLLAMA_HOST=0.0.0.0
+export OLLAMA_HOST
 function ollama_ui() {
   local OLLAMA_UI_IMAGE="ghcr.io/open-webui/open-webui:main"
   docker pull "$OLLAMA_UI_IMAGE"

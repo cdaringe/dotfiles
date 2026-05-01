@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+{
+  git ls-files '*.sh' 'env/.bashrc' 'env/.bash_profile' 'env/.basher.sh'
+  git grep -IlE '^#!.*(ba)?sh([[:space:]]|$)' -- . || true
+} | sort -u

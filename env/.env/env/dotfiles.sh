@@ -1,6 +1,7 @@
+# shellcheck shell=bash
 function uall () {
   l_pwd=$PWD
-  cd ~/dotfiles
+  cd ~/dotfiles || exit
   git pull
   echo '[dotfiles] adding dotfiles...'
   git add ~/dotfiles
@@ -12,6 +13,7 @@ function uall () {
   git push origin master --verbose
   echo '[dotfiles] patches submitted successfully!'
   stow env
-  cd $l_pwd
-  source ~/.bash_profile
+  cd "$l_pwd" || exit
+  # shellcheck disable=SC1091
+  source "$HOME"/.bash_profile
 }

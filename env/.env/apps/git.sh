@@ -1,4 +1,5 @@
 # git
+# shellcheck shell=bash
 alias bumpci="git commit --allow-empty -m 'chore: bump ci'"
 alias gs="git status"
 alias gpm="git pull origin main"

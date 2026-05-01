@@ -1,11 +1,12 @@
 #!/bin/bash
+# shellcheck shell=bash
 declare -a PROMPT_COMMANDS
 
 function __set_title_to_command {
   # Don't set for shell builtins or empty lines
   [[ -z "$BASH_COMMAND" ]] && return
   case "$BASH_COMMAND" in
-    *\033]*) return ;; # Avoid escape sequences
+    *033]*) return ;; # Avoid escape sequences
     "") return ;;
   esac
   local cmd="${BASH_COMMAND%% *}"  # get the first word
@@ -52,6 +53,7 @@ shopt -s checkwinsize
 
 ts "/etc/bash_completion"
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+  # shellcheck disable=SC1091
   . /etc/bash_completion
   # enable tab-style completions
   [[ $- = *i* ]] && bind TAB:menu-complete
@@ -62,13 +64,16 @@ export CLICOLOR=1
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   ts "dir colors"
+  # shellcheck disable=SC2015
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
   alias grep='grep --color=auto'
 fi
 
-export IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi)
-export IS_DARWIN=$(if [[ $OSTYPE == *"darwin"* ]]; then echo 1; fi)
+IS_LINUX=$(if [[ $OSTYPE == *"linux"* ]]; then echo 1; fi)
+export IS_LINUX
+IS_DARWIN=$(if [[ $OSTYPE == *"darwin"* ]]; then echo 1; fi)
+export IS_DARWIN
 
 # ts "load_iterm_integrations"
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
@@ -83,10 +88,10 @@ export LANG
 
 # Commands to be executed before the prompt is displayed
 # Save current working dir
-if [ $IS_LINUX ]; then
-  PROMPT_COMMANDS+=('pwd > "${XDG_RUNTIME_DIR}/.cwd"')
+if [ "$IS_LINUX" ]; then
+  PROMPT_COMMANDS+=("pwd > ${XDG_RUNTIME_DIR}/.cwd")
   # Change to saved working dir
-  [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(<${XDG_RUNTIME_DIR}/.cwd)"
+  [[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(<"${XDG_RUNTIME_DIR}"/.cwd)" || exit
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -112,10 +117,11 @@ confirm() {
 
 function shutdown() {
   while true; do
+    # shellcheck disable=SC2162
     read -p "Do you wish to shutdown host: $(hostname)? [yn]" yn
     case $yn in
     [Yy]*)
-      $(which shutdown) $@
+      $(which shutdown) "$@"
       return 0
       ;;
     [Nn]*) return 1 ;;
@@ -125,7 +131,7 @@ function shutdown() {
 }
 
 # unix generic
-alias network="sudo $EDITOR /etc/network/interfaces"
+alias network='sudo $EDITOR /etc/network/interfaces'
 alias powerdown="sudo shutdown -hP -t 1 now"
 
 alias dusimple="du -d 1 -h"
@@ -135,8 +141,9 @@ elif command -v exa &>/dev/null; then
   alias ls="exa"
 fi
 
+# shellcheck disable=SC2155
 export PS1="🌲\W \\$ \[$(tput sgr0)\]"
-if [ $IS_LINUX ]; then
+if [ "$IS_LINUX" ]; then
   PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
@@ -146,7 +153,7 @@ function trim_line() {
 
 # Pretty print $PATH to shell
 function ppath() {
-  echo $PATH | tr ":" "\n"
+  echo "$PATH" | tr ":" "\n"
 }
 
 function dotenv() {
@@ -177,8 +184,8 @@ run_times_count() {
   num_times=$1
   shift 2
   for ((i=1; i<=num_times; i++)); do
-    "$@"
-    if [[ $? -eq 0 ]]; then
+
+    if "$@"; then
       ((success++))
     else
       ((fail++))

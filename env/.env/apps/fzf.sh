@@ -1,5 +1,7 @@
 #!/usr/env/bin bash
+# shellcheck shell=bash
 
+# shellcheck disable=SC1090
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
