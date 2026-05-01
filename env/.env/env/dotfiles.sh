@@ -1,6 +1,7 @@
 function uall () {
   l_pwd=$PWD
   cd ~/dotfiles
+  git pull
   echo '[dotfiles] adding dotfiles...'
   git add ~/dotfiles
   echo '[dotfiles] committing...'
