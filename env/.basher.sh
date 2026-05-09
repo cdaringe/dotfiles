@@ -1,6 +1,5 @@
 #!/bin/bash
 # shellcheck shell=bash
-
 # shellcheck disable=SC1091
 . "$HOME"/.env/dotfiles_util.sh
 
@@ -34,8 +33,7 @@ done
 ts "load_secrets"
 if [ -f ~/.secrets.sh ]; then . "$HOME"/.secrets.sh; fi
 ts "load_work"
-if [ -f ~/.work.sh ]; then . "$HOME"/.work.sh; fi
-
+if [ -f "$HOME"/.work.sh ]; then . "$HOME"/.work.sh; fi
 ts "env_post"
 . "$HOME"/.env/env_post.sh
 ts "apps_app"
@@ -44,4 +42,3 @@ ts "apps_app"
 ts "done"
 tsflush
 
-# echo 🌲
