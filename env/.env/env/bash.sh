@@ -147,13 +147,22 @@ elif command -v exa &>/dev/null; then
   alias ls="exa"
 fi
 
+HOSTNAME='?'
 if command_exists "hostname"; then
   HOSTNAME="$(hostname)"
   export HOSTNAME
 fi
 
 # https://robotmoon.com/bash-prompt-generator/
-PS1="🌲 \[$(tput setaf 243)\]\u\[$(tput setaf 208)\]@${HOSTNAME:-'?'} \[$(tput setaf 220)\]\w \[$(tput sgr0)\]$ "
+# PS1="🌲 \[$(tput setaf 243)\]\u\[$(tput setaf 208)\]@${HOSTNAME:-'?'} \[$(tput setaf 220)\]\w \[$(tput sgr0)\]$ "
+theme() {
+  local text="$1" color="$2" weight="${3:-}"
+  [[ "$weight" == bold ]] && printf '%s' "$(tput bold)"
+  [[ -n "$color" ]] && printf '%s' "$(tput setaf "$color")"
+  printf '%s%s' "$text" "$(tput sgr0)"
+}
+# shellcheck disable=SC2016
+PS1="🌲 $(theme '\u' 34 bold)$(theme '@' 40)$(theme '$HOSTNAME' 46) $(theme '\w' 154 bold) "
 export PS1
 # if [ "$IS_LINUX" ]; then
   # PS1='🌲 ${HOSTNAME:-}/\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
