@@ -151,11 +151,13 @@ if command_exists "hostname"; then
   HOSTNAME="$(hostname)"
   export HOSTNAME
 fi
-PS1="🌲\W \\$ \[$(tput sgr0)\]"
+
+# https://robotmoon.com/bash-prompt-generator/
+PS1="🌲 \[$(tput setaf 243)\]\u\[$(tput setaf 208)\]@${HOSTNAME:-'?'} \[$(tput setaf 220)\]\w \[$(tput sgr0)\]$ "
 export PS1
-if [ "$IS_LINUX" ]; then
-  PS1='🌲 ${HOSTNAME:-}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
-fi
+# if [ "$IS_LINUX" ]; then
+  # PS1='🌲 ${HOSTNAME:-}/\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# fi
 
 function trim_line() {
   xargs printf "%s\n" "$@"
