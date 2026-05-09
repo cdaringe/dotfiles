@@ -1,26 +1,29 @@
 #!/bin/bash
 # shellcheck shell=bash
-declare -a PROMPT_COMMANDS
+theme() {
+  local text="$1" color="$2" weight="${3:-}"
+  [[ "$weight" == bold ]] && printf '%s' "$(tput bold)"
+  [[ -n "$color" ]] && printf '%s' "$(tput setaf "$color")"
+  printf '%s%s' "$text" "$(tput sgr0)"
+}
 
 function __set_title_to_command {
   # Don't set for shell builtins or empty lines
   [[ -z "$BASH_COMMAND" ]] && return
+  [[ "$BASH_COMMAND" == *__systemd_* ]] && return
   case "$BASH_COMMAND" in
-    *033]*) return ;; # Avoid escape sequences
+    __*|*033*|*PROMPT_COMMAND*|trap*|printf*|echo*) return ;;
     "") return ;;
   esac
   local cmd="${BASH_COMMAND%% *}"  # get the first word
   case "$cmd" in
     ls|cd|pwd|clear) return ;;
   esac
-  echo -ne "\033]0;▶ $cmd\007"
+  printf '\033]0;▶ %s\007' "$cmd"
 }
 
 function __reset_terminal_title {
-  echo -ne "\033]0;${PWD}\007"
-  for cmd in "${PROMPT_COMMANDS[@]}"; do
-    eval "$cmd"
-  done
+  printf '\033]0;%s\007' "$PWD"
 }
 
 # Set traps
@@ -85,21 +88,6 @@ fi
 
 LANG="en_US.UTF-8"
 export LANG
-
-# Commands to be executed before the prompt is displayed
-# Save current working dir
-if [ "$IS_LINUX" ]; then
-  TARGET_CWD_FILE="${XDG_RUNTIME_DIR}/.cwd"
-  PROMPT_COMMANDS+=("pwd > $TARGET_CWD_FILE")
-  if [[ -f "$TARGET_CWD_FILE" ]]; then
-    TARGET_CWD="$(cat "$TARGET_CWD_FILE")"
-    if [[ -d "$TARGET_CWD" ]]; then
-      # shellcheck disable=SC2164
-      cd "$TARGET_CWD"
-    fi
-  fi
-fi
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if hash starship 2>/dev/null; then
@@ -154,13 +142,6 @@ if command_exists "hostname"; then
 fi
 
 # https://robotmoon.com/bash-prompt-generator/
-# PS1="🌲 \[$(tput setaf 243)\]\u\[$(tput setaf 208)\]@${HOSTNAME:-'?'} \[$(tput setaf 220)\]\w \[$(tput sgr0)\]$ "
-theme() {
-  local text="$1" color="$2" weight="${3:-}"
-  [[ "$weight" == bold ]] && printf '%s' "$(tput bold)"
-  [[ -n "$color" ]] && printf '%s' "$(tput setaf "$color")"
-  printf '%s%s' "$text" "$(tput sgr0)"
-}
 # shellcheck disable=SC2016
 PS1="🌲 $(theme '\u' 34 bold)$(theme '@' 40)$(theme '$HOSTNAME' 46) $(theme '\w' 154 bold) "
 export PS1
