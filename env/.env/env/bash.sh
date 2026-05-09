@@ -91,10 +91,12 @@ export LANG
 if [ "$IS_LINUX" ]; then
   TARGET_CWD_FILE="${XDG_RUNTIME_DIR}/.cwd"
   PROMPT_COMMANDS+=("pwd > $TARGET_CWD_FILE")
-  TARGET_CWD="$(cat "$TARGET_CWD_FILE")"
-  if [[ -d "$TARGET_CWD" ]]; then
-    # shellcheck disable=SC2164
-    cd "$TARGET_CWD"
+  if [[ -f "$TARGET_CWD_FILE" ]]; then
+    TARGET_CWD="$(cat "$TARGET_CWD_FILE")"
+    if [[ -d "$TARGET_CWD" ]]; then
+      # shellcheck disable=SC2164
+      cd "$TARGET_CWD"
+    fi
   fi
 fi
 
