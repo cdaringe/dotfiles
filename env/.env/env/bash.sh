@@ -147,10 +147,14 @@ elif command -v exa &>/dev/null; then
   alias ls="exa"
 fi
 
-# shellcheck disable=SC2155
-export PS1="🌲\W \\$ \[$(tput sgr0)\]"
+if command_exists "hostname"; then
+  HOSTNAME="$(hostname)"
+  export HOSTNAME
+fi
+PS1="🌲\W \\$ \[$(tput sgr0)\]"
+export PS1
 if [ "$IS_LINUX" ]; then
-  PS1='🌲 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='🌲 ${HOSTNAME:-}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
 function trim_line() {
