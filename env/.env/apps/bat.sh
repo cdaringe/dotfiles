@@ -1,6 +1,6 @@
-#!/usr/env/bin bash
+#!/usr/bin/env bash
 # shellcheck shell=bash
-if [ "$IS_DARWIN" ]; then
+if command_exists bat; then
   alias cat='bat'
 fi
 #BAT_CONFIG_DIR="$(bat cache --config-dir)"
