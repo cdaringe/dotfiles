@@ -2,9 +2,9 @@
 # shellcheck shell=bash
 theme() {
   local text="$1" color="$2" weight="${3:-}"
-  [[ "$weight" == bold ]] && printf '%s' "$(tput bold)"
-  [[ -n "$color" ]] && printf '%s' "$(tput setaf "$color")"
-  printf '%s%s' "$text" "$(tput sgr0)"
+  [[ "$weight" == bold ]] && printf '\\[%s\\]' "$(tput bold)"
+  [[ -n "$color" ]] && printf '\\[%s\\]' "$(tput setaf "$color")"
+  printf '%s\\[%s\\]' "$text" "$(tput sgr0)"
 }
 
 function __set_title_to_command {
