@@ -1,5 +1,7 @@
 # TypeScript Guidelines
 
+Use abstraction. Do not just code a task to get it done--code for longevity and long term extensibility, always.
+
 ## Type System
 
 - Use `const` by default, `let` only when necessary, never `var`.
@@ -27,7 +29,7 @@
 - Spread operators for copying: `{ ...obj, field: newValue }`.
 - Immutable updates: `array.map(...)` over `array.push(...)`.
 
-## Type Narrowing
+## Type safety
 
 - Use discriminated unions for state machines.
 - Leverage type guards and `is` predicates.
@@ -40,6 +42,8 @@ type State<T, E> =
   | { status: 'success'; data: T }
   | { status: 'error'; data: E }
 ```
+
+- Leverage phantom types for incremental creation of resources
 
 ## Consolidated state management
 
