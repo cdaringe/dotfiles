@@ -1,16 +1,5 @@
 #!/bin/bash
 # shellcheck shell=bash
-add_brew_install "fnm"
-
-load_nvmrc() {
-  if command_exists fnm && [[ -f .nvmrc && -r .nvmrc ]]; then
-    fnm use
-  fi
-}
-
-if command_exists fnm; then
-  eval "$(fnm env)"
-fi
 
 export SCARF_ANALYTICS=false
 
