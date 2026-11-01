@@ -18,7 +18,7 @@ Heed this rules, otherwise rework will be requested.
 ## Type definitions
 
 - Prefer array type shorthand `T[]` vs `Array<T>`
-- Avoid combining types `T & U` and prefer new containers to avoid holding onto memory.
+- Avoid combining objects together `T & U` and prefer new containers `{t: T, u: U}`
 
 ## Functional Patterns
 
