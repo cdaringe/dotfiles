@@ -5,7 +5,7 @@ Heed this rules, otherwise rework will be requested.
 ## General
 
 - Use abstractions and well known patterns. Do not just code--code for longevity, comprehension, and extensibility.
-- Multiline comments must use JSDoc and have a `\n` after the `/**` opener: `/**\n`
+- NO single lines comments using `/**`. `//` single line, `/**\n` JSDoc for multiline
 
 ## Type System
 
