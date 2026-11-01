@@ -5,7 +5,7 @@ Heed this rules, otherwise rework will be requested.
 ## General
 
 - Use abstractions and well known patterns. Do not just code--code for longevity, comprehension, and extensibility.
-- NO single lines comments using `/**`. `//` single line, `/**\n` JSDoc for multiline
+- NO single lines comments using `/**`. Use `//` for 1 line, `/**\n` JSDoc for multiline
 
 ## Type System
 
