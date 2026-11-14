@@ -1,5 +1,5 @@
 #!/bin/bash
-export RUST_BACKTRACE=1
+# export RUST_BACKTRACE=1
 
 if [ -d "$HOME/.rustup" ]; then
   if [ "$IS_DARWIN" ]; then

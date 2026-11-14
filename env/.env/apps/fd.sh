@@ -8,3 +8,7 @@ function fdhelp() {
   echo " -u: untracked files (git)"
   echo " -x: execute command on found files"
 }
+
+if command_exists "fdfind"; then
+  alias fd="fdfind"
+fi
