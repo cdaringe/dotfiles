@@ -1,5 +1,9 @@
 # General Coding Guidelines
 
+## Changes
+
+- Minimize changes/diffs
+
 ## Core coding principles
 
 - **Maximize expressions, minimize statements**.
